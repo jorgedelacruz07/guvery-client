@@ -57,7 +57,6 @@
 
 <script>
 import Navbar from '../layouts/Navbar'
-const axios = require('axios')
 const cheerio = require('cheerio')
 
 export default {
@@ -80,22 +79,13 @@ export default {
     }
   },
   methods: {
-    getProduct () {
-      axios.get(this.domain, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        }
-      })
-      .then((response) => {
-        const html = response.data
-        const $ = cheerio.load(html)
-        this.product.title = $('#productTitle').text()
-        this.product.price = $('#priceblock_ourprice').text()
-        this.product.image = $('#landingImage').data('old-hires')
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    async getProduct () {
+      console.log(this.domain)
+      const html = await this.$axios.$get(this.domain)
+      const $ = cheerio.load(html)
+      this.product.title = $('#productTitle').text()
+      this.product.price = $('#priceblock_ourprice').text()
+      this.product.image = $('#landingImage').data('old-hires')
     }
   },
   components: {

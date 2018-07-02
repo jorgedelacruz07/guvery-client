@@ -7,7 +7,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Guvery Client',
+    title: 'Guvery',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -29,6 +29,8 @@ module.exports = {
     // DotEnv
     ['@nuxtjs/dotenv', { path: '/.env' }],
 
+    '@nuxtjs/axios',
+
     // Vuetify
     '@nuxtjs/vuetify',
 
@@ -45,7 +47,7 @@ module.exports = {
     mobileAppIOS: false,
     lang: 'es',
     ogImage: true,
-    ogHost: 'https://gettingnews.tk',
+    ogHost: 'https://guvery.tk',
     nativeUI: true
   },
 
@@ -61,7 +63,7 @@ module.exports = {
   },
 
   icon: {
-    iconSrc: 'static/icon.png'
+    // iconSrc: 'static/icon.png'
   },
 
   /*
@@ -70,6 +72,14 @@ module.exports = {
   vuetify: {
     // Vuetify options
     //  theme: { }
+  },
+
+  /*
+  ** Axios configuration
+  */
+  axios: {
+    proxyHeaders: false,
+    credentials: false
   },
 
   /*

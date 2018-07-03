@@ -29,8 +29,6 @@ module.exports = {
     // DotEnv
     ['@nuxtjs/dotenv', { path: '/.env' }],
 
-    '@nuxtjs/axios',
-
     // Vuetify
     '@nuxtjs/vuetify',
 
@@ -72,14 +70,6 @@ module.exports = {
   vuetify: {
     // Vuetify options
     //  theme: { }
-  },
-
-  /*
-  ** Axios configuration
-  */
-  axios: {
-    proxyHeaders: false,
-    credentials: false
   },
 
   /*

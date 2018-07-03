@@ -23,8 +23,8 @@
                   </v-card-text>
                 </v-card>
               </v-flex>
-              <v-flex xs12 class="" v-if="product.title" :key="product.title">
-                <v-card>
+              <v-flex xs12 class="mt-4" v-if="product.title" :key="product.title">
+                <v-card class="">
                   <v-card-media
                   :src="product.image"
                   height="125px"
@@ -58,13 +58,15 @@
 <script>
 import Navbar from '../layouts/Navbar'
 const cheerio = require('cheerio')
+const axios = require('axios')
 
 export default {
   data () {
     return {
       product: {
         title: '',
-        price: ''
+        price: '',
+        image: ''
       },
       domain: '',
       urlRules: [
@@ -79,13 +81,21 @@ export default {
     }
   },
   methods: {
-    async getProduct () {
-      console.log(this.domain)
-      const html = await this.$axios.$get(this.domain)
-      const $ = cheerio.load(html)
-      this.product.title = $('#productTitle').text()
-      this.product.price = $('#priceblock_ourprice').text()
-      this.product.image = $('#landingImage').data('old-hires')
+    getProduct () {
+      axios.get(this.domain)
+      .then((response) => {
+        if(response.status === 200) {
+          const html = response.data
+          const $ = cheerio.load(html)
+          console.log(html)
+          this.product.title = $('#productTitle').text()
+          this.product.price = $('#priceblock_ourprice').text()
+          this.product.image = $('#landingImage').data('old-hires')
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
   },
   components: {

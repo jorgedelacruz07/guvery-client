@@ -78,7 +78,7 @@ export default {
   methods: {
     async getProduct () {
       try {
-        const p = await this.$axios.$get('http://localhost:5041/scrape?url=' + this.domain)
+        const p = await this.$axios.$get('/scrape?url=' + this.domain)
         console.log(p)
         this.product = p
       } catch (e) {

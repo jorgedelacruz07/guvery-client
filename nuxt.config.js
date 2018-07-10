@@ -29,6 +29,9 @@ module.exports = {
     // DotEnv
     ['@nuxtjs/dotenv', { path: '/.env' }],
 
+    // Axios
+    '@nuxtjs/axios',
+
     // Vuetify
     '@nuxtjs/vuetify',
 

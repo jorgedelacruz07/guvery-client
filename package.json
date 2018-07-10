@@ -13,10 +13,10 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.1",
     "@nuxtjs/dotenv": "^1.1.1",
     "@nuxtjs/pwa": "^2.0.8",
     "@nuxtjs/vuetify": "^0.4.2",
-    "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
     "nuxt": "^1.0.0"
   },

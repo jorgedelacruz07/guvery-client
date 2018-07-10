@@ -58,16 +58,11 @@
 <script>
 import Navbar from '../layouts/Navbar'
 const cheerio = require('cheerio')
-const axios = require('axios')
 
 export default {
   data () {
     return {
-      product: {
-        title: '',
-        price: '',
-        image: ''
-      },
+      product: {},
       domain: '',
       urlRules: [
         v => !!v || 'Dominio requerido'
@@ -81,21 +76,14 @@ export default {
     }
   },
   methods: {
-    getProduct () {
-      axios.get(this.domain)
-      .then((response) => {
-        if(response.status === 200) {
-          const html = response.data
-          const $ = cheerio.load(html)
-          console.log(html)
-          this.product.title = $('#productTitle').text()
-          this.product.price = $('#priceblock_ourprice').text()
-          this.product.image = $('#landingImage').data('old-hires')
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    async getProduct () {
+      try {
+        const p = await this.$axios.$get('http://localhost:5041/scrape?url=' + this.domain)
+        console.log(p)
+        this.product = p
+      } catch (e) {
+        this.product = {}
+      }
     }
   },
   components: {
